@@ -26,7 +26,7 @@ class LinkedList:
         if self.head is not None:
             node.set_next(self.head)
 
-        self.head = node
+        self.head = node 
 
     def contains(self, value):
         if not self.head:
@@ -47,4 +47,21 @@ class LinkedList:
 
     def reverse_list(self, node, prev):
         # You must use recursion for this solution
-        pass
+        
+        # base case, no node found
+        if node is None:
+            return
+        else:
+
+            # if next_node is None
+            if node.next_node is None:
+                # set the head to the active node and set the next node to the prev node
+                self.head = node
+                node.next_node = prev
+                return
+
+            # swaps the next_node & prev and calls the function again w/ updated values
+            new_node = node.next_node
+            node.next_node = prev
+
+            self.reverse_list(new_node, node)
